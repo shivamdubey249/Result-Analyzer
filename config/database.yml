@@ -1,0 +1,17 @@
+defaults: &defaults
+  adapter: mysql2
+  username:  rails_user
+  password: password123
+  host: localhost
+
+development:
+  <<: *defaults
+  database: result_analyzer_development
+
+test:
+  <<: *defaults
+  database: <%= ENV.fetch("MYSQL_DATABASE_TEST", "result_analyzer_test") %>
+
+production:
+  <<: *defaults
+  database: <%= ENV.fetch("MYSQL_DATABASE_PROD", "result_analyzer_production") %>
